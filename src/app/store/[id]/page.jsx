@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { notFound } from "next/navigation";
 export default function page({ params }) {
   const data = [
     {
@@ -31,36 +32,28 @@ export default function page({ params }) {
         "https://hips.hearstapps.com/hmg-prod/images/kathleen-brooks-1967-annie-beetle-9207-1544465705.jpg?crop=1.00xw:0.839xh;0,0.161xh&resize=980:*",
     },
   ];
-
+const cheooseitem = data.find((x)=>x.id==params.id)
+if(!cheooseitem){
+  notFound()
+}
   return (
     <>
-      {/* <div>page{params.id}</div> */}
       {data.map((item, id) => {
-        return(
-            params.id == item.id ?(<div key={id} className="bg-red-100">
-                <img
-                  key={id}
-                  style={{ width: "150px", margin: "30px" }}
-                  src={item.imgUrl}
-                  alt=""
-                />
-                <p key={id}>{item.name}</p>
-                <p key={id}>{item.id}</p>
-              </div>)
-          
-            : null
-            
-        )
-
-        //  return(
-        //     <div key={id} className='bg-red-100' >
-        //         <img key={id} style={{width:'150px', margin:'30px'}} src={item.imgUrl} alt=""  />
-        //         <p key={id} >{item.name}</p>
-        //         <p key={id}>{item.id}</p>
-        //     </div>
-
-        //  )
-      })}
+    return item.id== params.id ? (
+      <div key={id} className="bg-red-100">
+        <img
+          key={id}
+          style={{ width: "150px", margin: "30px" }}
+          src={item.imgUrl}
+          alt=""
+        />
+        <p key={id}>{item.name}</p>
+        <p key={id}>{item.id}</p>
+      </div>
+    ) : null
+   
+      }
+      )}
     </>
   );
 }
