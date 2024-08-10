@@ -1,7 +1,9 @@
-import React from 'react'
+"use client";
+import React from "react";
 
-export default function page() {
-  return (
-    <div>support</div>
-  )
+export default function Home() {
+  throw new Error("suppurt aslan namanade")
+ return(
+  <div>support</div>
+ )
 }
